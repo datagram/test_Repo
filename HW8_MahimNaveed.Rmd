@@ -32,3 +32,20 @@ View(movies.sorted)
 
 
 From the cafe data set, explain how you would tidy it up. Which variables? "Un-tidy" the data set by the variable Day Code/ Day of Week.
+
+Date can be separated into month and day. 
+Day.code and X can be removed as they aren't really needed. 
+Columns for sold,wasted and total can be turned into rows, keeping item titles as column names.
+
+```{r cache=TRUE tidy=TRUE}
+cafe <- getURL("https://raw.githubusercontent.com/shv38339/statcomp597d/master/data/cafedata.csv")
+cafe <- read.csv(file = textConnection(cafe), header = TRUE)
+
+cafe.sorted <- cafe %>%
+  select(Date, Day.Code, Day.of.Week, c(5:22)) %>% 
+  arrange(Day.Code, Date, Day.of.Week) %>% 
+  select(-Day.Code)
+  
+head(cafe.sorted, 10)
+View(cafe.sorted)
+```
