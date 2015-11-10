@@ -1,0 +1,34 @@
+---
+title: "HW8_MahimNaveed"
+author: "Mahim Naveed"
+date: "Sunday, November 09, 2015"
+output: html_document
+---
+
+From the ggplot2 package, tidy up the "movies" data set. Specifically, variables r1:r10 and Action:Short
+
+```{r cache=TRUE tidy=TRUE}
+library(gcookbook); library(ggplot2)
+library(dplyr, warn.conflicts=FALSE)
+library(broom); library(lubridate); 
+library(RCurl); library(tidyr); library(plyr)
+library(reshape2)
+
+
+movies.sorted <- movies %>% 
+  select(year, title, r1:r10, Action:Short) %>% 
+  gather("rating", "percentage", r1:r10) %>% 
+  arrange(year, title) %>% 
+  gather("genre", "Logical", Action:Short) %>% 
+  filter(Logical==1) %>% 
+  select(year, genre, title, rating, percentage)
+
+head(movies.sorted, 25)
+
+View(movies.sorted)
+
+```
+
+
+
+From the cafe data set, explain how you would tidy it up. Which variables? "Un-tidy" the data set by the variable Day Code/ Day of Week.
