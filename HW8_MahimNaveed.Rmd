@@ -5,7 +5,7 @@ date: "Sunday, November 09, 2015"
 output: html_document
 ---
 
-From the ggplot2 package, tidy up the "movies" data set. Specifically, variables r1:r10 and Action:Short
+#From the ggplot2 package, tidy up the "movies" data set. Specifically, variables r1:r10 and Action:Short
 
 ```{r cache=TRUE tidy=TRUE}
 library(gcookbook); library(ggplot2)
@@ -31,11 +31,14 @@ View(movies.sorted)
 
 
 
-From the cafe data set, explain how you would tidy it up. Which variables? "Un-tidy" the data set by the variable Day Code/ Day of Week.
+#From the cafe data set, explain how you would tidy it up. Which variables? "Un-tidy" the data set by the variable Day Code/ Day of Week.
 
-Date can be separated into month and day. 
-Day.code and X can be removed as they aren't really needed. 
-Columns for sold,wasted and total can be turned into rows, keeping item titles as column names.
+How I would tidy it up:
+Separate date into month and day. 
+Remove Day.code and X as they aren't really needed. 
+Turn columns for sold,wasted and total into rows, keeping item titles as column names.
+
+"Un-tidying" the data set by Day Code/ Day of Week:
 
 ```{r cache=TRUE tidy=TRUE}
 cafe <- getURL("https://raw.githubusercontent.com/shv38339/statcomp597d/master/data/cafedata.csv")
@@ -49,3 +52,4 @@ cafe.sorted <- cafe %>%
 head(cafe.sorted, 10)
 View(cafe.sorted)
 ```
+
